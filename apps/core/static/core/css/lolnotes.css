@@ -1,0 +1,17 @@
+tr.clickable-row {
+  border: 1px solid #ddd;
+}
+
+tr.clickable-row td {
+    border-top: 1px solid #ddd;
+}
+
+tr.clickable-row:hover {
+  cursor: pointer;
+  border: 1px solid #888;
+}
+
+tr.clickable-row:hover td {
+    border-bottom: 1px solid #888;
+    border-top: 1px solid #888;
+}

@@ -1,0 +1,50 @@
+{% extends "core/base.html" %}
+{% load bootstrap champion %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <table class="table">
+                <tr>
+                    <th>Date</th>
+                    <th>Game type</th>
+                    <th>Champion</th>
+                    <th>KDA</th>
+                    <th>CS</th>
+                </tr>
+
+                <tr class="match {% if match.win %}success{% else %}danger{% endif %}">
+                    <td>
+                        {{ match.created }}
+                    </td>
+                    <td>
+                        {{ match.game_type }}
+                    </td>
+                    <td>
+                        {% icon_for_champion match.champion_name %}
+                    </td>
+                    <td>
+                        {{ match.kills }} / {{ match.deaths }} / {{ match.assists }}
+                    </td>
+                    <td>
+                        {{ match.minions }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <form class="form-horizontal" method="POST">
+                {% csrf_token %}
+                {{ form|bootstrap_horizontal }}
+
+                <button type="submit" class="btn btn-default">Save</button>
+            </form>
+        </div>
+
+    </div>
+{% endblock content %}

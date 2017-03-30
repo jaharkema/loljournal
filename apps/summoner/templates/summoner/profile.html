@@ -1,0 +1,23 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <p>
+                Hello {{ summoner.get_short_name }}!
+            </p>
+            <p>
+                For now there are options here to change your password or update your Summoner name.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <a href="{% url 'password_change' %}">Change your password</a><br />
+            <a href="{% url 'summoner.update_name' %}">Update Summoner name</a>
+
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,19 @@
+DEBUG = True
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
+    }
+}
+
+RIOT_API_KEY = ''
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = ''
+

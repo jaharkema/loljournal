@@ -1,0 +1,78 @@
+{% extends "core/base.html" %}
+{% load champion pagination %}
+
+{% block extra_head %}
+    <script type="text/javascript">
+        $(document).ready(function($) {
+            $(".clickable-row").click(function() {
+                window.location = $(this).data("href");
+            });
+        });
+    </script>
+{% endblock extra_head %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <p>
+                <form method="GET">
+                    <select name="game_type">
+                        <option value="">All</option>
+                        {% for game_type in game_types %}
+                            <option value="{{ game_type }}"
+                                {% ifequal game_type selected_game_type %}selected=""{% endifequal %}
+                            >{{ game_type }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn btn-default">Filter</button>
+                </form>
+            </p>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+
+            {% paginator %}
+
+            <table class="table">
+                <tr>
+                    <th>Date</th>
+                    <th>Game type</th>
+                    <th>Champion</th>
+                    <th>KDA</th>
+                    <th>CS</th>
+                    <th>Notes</th>
+                </tr>
+
+                {% for match in matches %}
+                    <tr class="match {% if match.win %}success{% else %}danger{% endif %} clickable-row" data-href="{% url 'match.update' pk=match.pk %}">
+                        <td>
+                            {{ match.created }}
+                        </td>
+                        <td>
+                            {{ match.game_type }}
+                        </td>
+                        <td>
+                            {% icon_for_champion match.champion_name %}
+                        </td>
+                        <td>
+                            {{ match.kills }} / {{ match.deaths }} / {{ match.assists }}
+                        </td>
+                        <td>
+                            {{ match.minions }}
+                        </td>
+                        <td>
+                            {{ match.notes|default:''|linebreaks }}
+                        </td>
+                    </tr>
+                {% endfor %}
+
+            </table>
+
+            {% paginator %}
+
+        </div>
+    </div>
+{% endblock content %}

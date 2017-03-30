@@ -1,0 +1,16 @@
+{% extends "core/base.html" %}
+{% load bootstrap %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" method="POST">
+                {% csrf_token %}
+                {{ form|bootstrap_horizontal }}
+
+                <br style="clear:both" />
+                <button type="submit" class="btn btn-default">Update summoner name</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

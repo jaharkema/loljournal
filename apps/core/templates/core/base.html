@@ -1,0 +1,91 @@
+{% load staticfiles menu %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LoL Notes</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'core/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'core/css/bootstrap-theme.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'core/css/lolnotes.css' %}">
+    <script type="text/javascript" src="{% static 'core/js/jquery-3.1.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'core/js/bootstrap.min.js' %}"></script>
+
+    {% block extra_head %}
+
+    {% endblock extra_head %}
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row divider">
+            <div class="col-md-12">&nbsp;</div>
+        </div>
+
+        <div class="menu">
+            {% block menu %}
+                <ul class="nav nav-pills">
+                    <li class="{% class_for_url 'home' %}">
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
+
+                    {% if request.user.is_authenticated %}
+                        <li role="presentation" class="dropdown {% class_for_url 'match.list' %}">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                Matches <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'match.list' %}">List</a></li>
+                                <li><a href="{% url 'match.retrieve' %}">Retrieve</a></li>
+                            </ul>
+
+                        </li>
+
+                        <li class="{% class_for_url 'summoner.profile' %}">
+                            <a href="{% url 'summoner.profile' %}">Profile</a>
+                        </li>
+
+                        <li class="{% class_for_url 'faq.index' %}">
+                            <a href="{% url 'faq.index' %}">FAQ</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'logout' %}?next=/">Log out</a> {# TODO: Define 'next' somewhere different #}
+                        </li>
+                    {% else %}
+                        <li class="{% class_for_url 'faq.index' %}">
+                            <a href="{% url 'faq.index' %}">FAQ</a>
+                        </li>
+
+                        <li class="{% class_for_url 'login' %}">
+                            <a href="{% url 'login' %}">Log in</a>
+                        </li>
+
+                        <li class="{% class_for_url 'summoner.register' %}">
+                            <a href="{% url 'summoner.register' %}">Register</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            {% endblock menu %}
+        </div>
+
+        <div class="row divider">
+            <div class="col-md-12">&nbsp;</div>
+        </div>
+
+        {% if messages %}
+            <div class="row messages">
+                <div class="col-md-12">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert"> {# TODO: alert-error should be alert-danger #}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            {{ message.message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+        {% block content %}
+        {% endblock content %}
+    </div>
+</body>
+</html>
