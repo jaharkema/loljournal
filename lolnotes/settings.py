@@ -72,8 +72,6 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ALLOWED_HOSTS = ['lolnotes.localhost']
-
 ROOT_URLCONF = 'lolnotes.urls'
 
 TEMPLATES = [
