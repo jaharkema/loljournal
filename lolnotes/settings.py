@@ -27,7 +27,10 @@ DEBUG = False
 MEDIA_ROOT = PROJECT_DIR('media')
 MEDIA_URL = '/media/'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'ancient-river-26772.herokuapp.com',
+    'herokuapp.com',
+]
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 RIOT_API_KEY = os.environ.get('RIOT_API_KEY')
