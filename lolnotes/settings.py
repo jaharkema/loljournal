@@ -28,8 +28,8 @@ MEDIA_ROOT = PROJECT_DIR('media')
 MEDIA_URL = '/media/'
 
 ALLOWED_HOSTS = [
-    'ancient-river-26772.herokuapp.com',
-    'herokuapp.com',
+    u'ancient-river-26772.herokuapp.com',
+    u'.herokuapp.com',
 ]
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
