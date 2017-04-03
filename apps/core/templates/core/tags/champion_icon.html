@@ -1,5 +1,1 @@
-{% load thumbnail %}
-
-{% thumbnail icon_url '75x75' quality=99 as icon %}
-    <img src="{{ icon.url }}" title="{{ champion_name }}">
-{% endthumbnail %}
+<img src="{{ icon_url }}" title="{{ champion_name }}" height="75" width="75">

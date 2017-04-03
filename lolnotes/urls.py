@@ -18,7 +18,7 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
 
-from apps.core.views import HomeView
+from apps.core.views import HomeView, RiotTextView
 
 urlpatterns = [
     url('^summoner/', include('django.contrib.auth.urls')),
@@ -27,6 +27,7 @@ urlpatterns = [
     url('^match/', include('apps.match.urls')),
 
     url(r'^$', HomeView.as_view(), name='home'),
+    url(r'^riot\.txt$', RiotTextView.as_view(), name='riot.txt'),
     url(r'^admin/', admin.site.urls),
 
 ]

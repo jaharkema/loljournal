@@ -22,7 +22,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('DEBUG', False)
 
 MEDIA_ROOT = PROJECT_DIR('media')
 MEDIA_URL = '/media/'
@@ -30,10 +30,12 @@ MEDIA_URL = '/media/'
 ALLOWED_HOSTS = [
     u'ancient-river-26772.herokuapp.com',
     u'.herokuapp.com',
+    u'lolnotes.localhost',
 ]
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 RIOT_API_KEY = os.environ.get('RIOT_API_KEY')
+RIOT_VERIFICATION_TEXT = os.environ.get('RIOT_VERIFICATION_TEXT', '')
 
 # FIXME: These two DDRAGON variables should be updated through the API:
 #        https://developer.riotgames.com/docs/static-data
@@ -50,7 +52,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'bootstrapform',
-    'sorl.thumbnail',
 
     'apps.api',
     'apps.core',
